@@ -254,8 +254,8 @@ if command -v cloudflared &>/dev/null; then
         CLOUDFLARE_PID=$!
 
         # Wait for URL to appear in logs
-        for i in $(seq 1 15); do
-            CF_URL=$(grep -o 'https://[a-z0-9-]*\.trycloudflare\.com' /tmp/cloudflared-slides.log 2>/dev/null | head -1)
+        for i in $(seq 1 30); do
+            CF_URL=$(grep -o 'https://[a-z0-9-]*\.trycloudflare\.com' /tmp/cloudflared-slides.log 2>/dev/null | head -1 || true)
             if [[ -n "$CF_URL" ]]; then
                 break
             fi
